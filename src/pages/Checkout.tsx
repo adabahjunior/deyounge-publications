@@ -29,7 +29,7 @@ export function Checkout() {
     window.setTimeout(() => {
       unlockBook(book!.id);
       setStep("done");
-      showToast(`Payment successful — “${book!.title}” unlocked.`);
+      showToast(`MoMo payment successful — “${book!.title}” unlocked.`);
       window.setTimeout(() => {
         navigate(`/read/${book!.id}`);
       }, 900);
@@ -41,10 +41,10 @@ export function Checkout() {
       <section className="page-hero">
         <div className="container">
           <span className="eyebrow">Demo checkout</span>
-          <h1>Complete your purchase</h1>
+          <h1>Pay with MoMo</h1>
           <p className="lead">
-            This is a demo payment flow. No real charges are made. After “payment,” your
-            flip book unlocks for on-site reading.
+            This is a demo Mobile Money flow. No real charges are made. After payment,
+            your flip book unlocks for on-site reading.
           </p>
         </div>
       </section>
@@ -70,79 +70,63 @@ export function Checkout() {
             {step === "processing" || processing ? (
               <div className="payment-status" role="status">
                 <div className="payment-spinner" aria-hidden="true" />
-                <strong>Processing demo payment…</strong>
-                <p>Confirming your order and unlocking the flip book.</p>
+                <strong>Waiting for MoMo approval…</strong>
+                <p>Confirm the prompt on your phone to complete payment.</p>
               </div>
             ) : step === "done" ? (
               <div className="form-success" role="status">
-                <strong>Payment successful</strong>
+                <strong>MoMo payment successful</strong>
                 Opening your flip book…
               </div>
             ) : (
               <form className="form" onSubmit={handlePay}>
-                <p className="demo-badge">Demo mode — use any card details</p>
+                <p className="demo-badge">Demo MoMo — use any Ghana number</p>
 
                 <div className="field">
-                  <label htmlFor="cardName">Name on card</label>
+                  <label htmlFor="momoNetwork">Mobile Money network</label>
+                  <select id="momoNetwork" name="momoNetwork" required defaultValue="mtn">
+                    <option value="mtn">MTN MoMo</option>
+                    <option value="vodafone">Telecel Cash</option>
+                    <option value="airteltigo">AirtelTigo Money</option>
+                  </select>
+                </div>
+
+                <div className="field">
+                  <label htmlFor="momoName">Account name</label>
                   <input
-                    id="cardName"
-                    name="cardName"
+                    id="momoName"
+                    name="momoName"
                     required
                     placeholder="Ada Owusu"
-                    autoComplete="cc-name"
+                    autoComplete="name"
                   />
                 </div>
 
                 <div className="field">
-                  <label htmlFor="cardNumber">Card number</label>
+                  <label htmlFor="momoNumber">MoMo number</label>
                   <input
-                    id="cardNumber"
-                    name="cardNumber"
+                    id="momoNumber"
+                    name="momoNumber"
                     required
-                    inputMode="numeric"
-                    placeholder="4242 4242 4242 4242"
-                    autoComplete="cc-number"
+                    inputMode="tel"
+                    placeholder="024 000 0000"
+                    autoComplete="tel"
                   />
                 </div>
 
-                <div className="form-row two">
-                  <div className="field">
-                    <label htmlFor="expiry">Expiry</label>
-                    <input
-                      id="expiry"
-                      name="expiry"
-                      required
-                      placeholder="MM/YY"
-                      autoComplete="cc-exp"
-                    />
-                  </div>
-                  <div className="field">
-                    <label htmlFor="cvc">CVC</label>
-                    <input
-                      id="cvc"
-                      name="cvc"
-                      required
-                      inputMode="numeric"
-                      placeholder="123"
-                      autoComplete="cc-csc"
-                    />
-                  </div>
-                </div>
-
                 <div className="field">
-                  <label htmlFor="email">Receipt email</label>
+                  <label htmlFor="email">Receipt email (optional)</label>
                   <input
                     id="email"
                     name="email"
                     type="email"
-                    required
                     placeholder="you@example.com"
                     autoComplete="email"
                   />
                 </div>
 
                 <button type="submit" className="btn btn-primary" style={{ width: "100%" }}>
-                  Pay {book.currency} {book.price.toFixed(2)}
+                  Pay {book.currency} {book.price.toFixed(2)} with MoMo
                 </button>
               </form>
             )}

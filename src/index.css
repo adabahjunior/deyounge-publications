@@ -325,7 +325,7 @@ h3,
 .nav-mobile {
   position: fixed;
   inset: 0;
-  background: rgba(0, 43, 128, 0.35);
+  background: #ffffff;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s var(--ease);
@@ -343,14 +343,15 @@ h3,
   right: 0;
   width: min(320px, 88vw);
   height: 100%;
-  background: var(--paper);
+  background: #ffffff;
   padding: calc(var(--header-h) + 1.5rem) 1.75rem 2rem;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
   transform: translateX(100%);
   transition: transform 0.35s var(--ease);
-  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.08);
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.12);
+  border-left: 1px solid var(--line);
 }
 
 .nav-mobile.open .nav-mobile-panel {

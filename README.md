@@ -28,4 +28,4 @@ npm run preview
 
 ## Demo payment
 
-Use any card details on checkout. Nothing is charged. Purchased titles unlock in the browser (`localStorage`) and open in the flip-book reader.
+Pay with **Mobile Money (MoMo)** on checkout — pick a network and enter any Ghana number. Nothing is charged. Purchased titles unlock in the browser (`localStorage`) and open in the flip-book reader.
